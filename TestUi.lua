@@ -21,9 +21,6 @@ function Library:new(options)
         name = "UI Library Test"
     }, options or {})
 
-    -- Update the options["Name"] assignment to use the default value if it is nil
-    options["Name"] = options["Name"] or "Default Name"
-
     -- StarterGui.MyLibrary
     Library.Tree["1"] = Instance.new("ScreenGui", runService:IsStudio() and players.LocalPlayer:WaitForChild("PlayerGui") or coreGui)
     Library.Tree["1"]["Name"] = [[MyLibrary]];
