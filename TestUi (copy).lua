@@ -21,6 +21,7 @@ function Library:new(options)
         name = "UI Library Test"
     }, options or {})
 
+
     -- StarterGui.MyLibrary
     Library.Tree["1"] = Instance.new("ScreenGui", runService:IsStudio() and players.LocalPlayer:WaitForChild("PlayerGui") or coreGui)
     Library.Tree["1"]["Name"] = [[MyLibrary]];
@@ -89,11 +90,11 @@ function Library:new(options)
     Library.Tree["7"]["TextSize"] = 14;
     Library.Tree["7"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
     Library.Tree["7"]["Size"] = UDim2.new(0.5, 0, 1, 0);
-    Library.Tree["7"]["Text"] = options["name"];  -- Updated key to "name"
-    Library.Tree["7"]["Name"] = "Title";  -- Use a fixed string for the Name
+    Library.Tree["7"]["Text"] = options["Name"];
+    Library.Tree["7"]["Name"] = options["Name"];
     Library.Tree["7"]["Font"] = Enum.Font.Gotham;
     Library.Tree["7"]["BackgroundTransparency"] = 1;
-
+  
     --MyLibrary.Main.TopBar.Title.UIPadding
     Library.Tree["8"] = Instance.new("UIPadding", Library.Tree ["7"]);
     Library.Tree["8"]["PaddingTop"] = UDim.new(0, 1);
