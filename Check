@@ -1,0 +1,49 @@
+-- Define our UI library table
+local UI = {}
+
+-- Function to create a window
+function UI.MakeWindow(options)
+    local window = {
+        Name = options.Name,
+        Frame = Instance.new("Frame"), -- Container frame for all UI elements
+        Sections = {},
+        AddSection = function(self, sectionOptions)
+            local section = {
+                Name = sectionOptions.Name,
+                Frame = Instance.new("Frame"), -- Container frame for section's UI elements
+                Buttons = {},
+                AddButton = function(self, buttonOptions)
+                    local button = {
+                        Name = buttonOptions.Name,
+                        Callback = buttonOptions.Callback,
+                        Frame = Instance.new("Frame") -- Container frame for button's UI elements
+                    }
+                    button.Frame.Name = buttonOptions.Name .. "ButtonFrame" -- Naming the button frame
+                    button.Frame.Size = buttonOptions.Size or UDim2.new(0, 100, 0, 50) -- Default size
+                    button.Frame.Position = buttonOptions.Position or UDim2.new(0, 0, 0, 0) -- Default position
+                    button.Frame.BackgroundColor3 = buttonOptions.BackgroundColor3 or Color3.fromRGB(255, 255, 255) -- Default background color
+                    button.Frame.BorderSizePixel = buttonOptions.BorderSizePixel or 1 -- Default border size
+                    button.Frame.Parent = section.Frame -- Set parent to section frame
+                    table.insert(self.Buttons, button)
+                end
+            }
+            section.Frame.Name = sectionOptions.Name .. "SectionFrame" -- Naming the section frame
+            section.Frame.Size = sectionOptions.Size or UDim2.new(1, 0, 1, 0) -- Default size
+            section.Frame.Position = sectionOptions.Position or UDim2.new(0, 0, 0, 0) -- Default position
+            section.Frame.BackgroundColor3 = sectionOptions.BackgroundColor3 or Color3.fromRGB(255, 255, 255) -- Default background color
+            section.Frame.BorderSizePixel = sectionOptions.BorderSizePixel or 1 -- Default border size
+            section.Frame.Parent = window.Frame -- Set parent to window frame
+            table.insert(window.Sections, section)
+            return section
+        end
+    }
+    window.Frame.Name = options.Name .. "WindowFrame" -- Naming the window frame
+    window.Frame.Size = options.Size or UDim2.new(0.5, 0, 0.5, 0) -- Default size
+    window.Frame.Position = options.Position or UDim2.new(0.25, 0, 0.25, 0) -- Default position
+    window.Frame.BackgroundColor3 = options.BackgroundColor3 or Color3.fromRGB(255, 255, 255) -- Default background color
+    window.Frame.BorderSizePixel = options.BorderSizePixel or 1 -- Default border size
+
+    return window
+end
+
+return UI -- Return the UI library table
